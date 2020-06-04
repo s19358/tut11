@@ -8,17 +8,20 @@ namespace MvcMovie.Controllers
         // 
         // GET: /HelloWorld/
 
-        public string Index()
+        public IActionResult Index()
         {
-            return "This is my default action...";
+            return View();
         }
 
 
         // GET: /HelloWorld/Welcome/ 
         // Requires using System.Text.Encodings.Web;
-        public string Welcome(string name, int ID = 1)
+        public IActionResult Welcome(string name, int numTimes = 1)
         {
-            return HtmlEncoder.Default.Encode($"Hello {name}, ID: {ID}");
+            ViewData["Message"] = "Hello " + name;  //The ViewData dictionary object contains data that will be passed to the view.
+            ViewData["NumTimes"] = numTimes;  //bunlari burda isimlendiriyor ayni isimle viewde bunlara erisiyor
+
+            return View();
         }
     }
 }
